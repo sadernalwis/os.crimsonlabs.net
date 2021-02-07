@@ -16,7 +16,7 @@ body {
   display: grid;
   justify-content: center;
   align-items: center;
-  background-image: url("/var/www/crimsonlabs.net/os.crimsonlabs.net/images/jpg/futuristic-symmetry-reflection-abstract-background-with-orange-blue-neon-lights.jpg");
+  background-image: url("../../images/jpg/futuristic-symmetry-reflection-abstract-background-with-orange-blue-neon-lights.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -40,7 +40,8 @@ body {
   align-items: center;
   border-radius: 2rem;
   font-family: sans-serif;
-  font-size: 10rem;
+  /* font-size: 10rem; */
+  font-size: 11px;
   color: #00000080;
   box-shadow: 0 5px 10px 0 #00000040, 0 15px 20px 0#00000020;
   transition: transform 200ms;

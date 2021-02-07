@@ -1,11 +1,11 @@
-body {
+/* body {
     background: url("/var/www/crimsonlabs.net/os.crimsonlabs.net/images/jpg/1234.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-    }
+    } */
 .CLABS {
    position: absolute;
    top: -50px;
