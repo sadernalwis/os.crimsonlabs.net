@@ -371,7 +371,7 @@ label {
 }
 @media (min-width: 800px) {
     #globe {
-        margin-left: 200px;
+        /* margin-left: 200px; */
     }
 }
 
