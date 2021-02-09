@@ -35,10 +35,12 @@ a {color: #8ff;}
     width: 100%;
     text-align: center;
     visibility: hidden;
+    opacity: 0;
   }
 
 #CSS {
   visibility: hidden;
+  opacity: 0;
 }
 .element {
     width: 120px;
@@ -94,7 +96,7 @@ font-family: Arial, Helvetica, sans-serif;
 display: grid;
 justify-content: center;
 align-items: center;
-background-image: url("images/jpg/futuristic-symmetry-reflection-abstract-background-with-orange-blue-neon-lights.jpg");
+/* background-image: url("../../images/jpg/futuristic-symmetry-reflection-abstract-background-with-orange-blue-neon-lights.jpg"); */
 background-repeat: no-repeat;
 background-size: cover;
 }

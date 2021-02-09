@@ -109,6 +109,7 @@ h3 {
 #options-content {
     opacity: 0;
     padding-left: 30px;
+    visibility: hidden;
 }
 
 .header{

@@ -8,58 +8,38 @@
         <title>OS.CRIMSONLABS.NET</title>
         <link type=" text/css" rel="stylesheet" href="text/css/main.css">
 </head>
-
 <body>
     <script>0</script>
+    <div id="container"><div id="globe"></div></div>
+    <div id="CSS" style="position: absolute;"></div>
     <div id="menu" style="width: 100%;height: 5%; position:absolute;top: 10px;left: 0px;">
         <button id="table">TABLE</button>
         <button id="sphere">SPHERE</button>
         <button id="helix">HELIX</button>
         <button id="grid">GRID</button>
-        <button id="geo">GLOBE</button>
-    </div>
-
-
-    <div id="container">
-        <div id="globe"></div>
-    </div>
-    <div id="CSS" style="position: absolute;"></div>
+        <button id="geo">GLOBE</button></div>
     <div class="flex-parent">
         <div class="input-flex-container">
             <div class="input">
-                <span data-year="1910" data-info="headset"></span>
-            </div>
+                <span data-year="1910" data-info="headset"></span></div>
             <div class="input">
-                <span data-year="1920" data-info="jungle gym"></span>
-            </div>
+                <span data-year="1920" data-info="jungle gym"></span></div>
             <div class="input active">
-                <span data-year="1930" data-info="chocolate chip cookie"></span>
-            </div>
+                <span data-year="1930" data-info="chocolate chip cookie"></span></div>
             <div class="input">
-                <span data-year="1940" data-info="Jeep"></span>
-            </div>
+                <span data-year="1940" data-info="Jeep"></span></div>
             <div class="input">
-                <span data-year="1950" data-info="leaf blower"></span>
-            </div>
+                <span data-year="1950" data-info="leaf blower"></span></div>
             <div class="input">
-                <span data-year="1960" data-info="magnetic stripe card"></span>
-            </div>
+                <span data-year="1960" data-info="magnetic stripe card"></span></div>
             <div class="input">
-                <span data-year="1970" data-info="wireless LAN"></span>
-            </div>
+                <span data-year="1970" data-info="wireless LAN"></span></div>
             <div class="input">
-                <span data-year="1980" data-info="flash memory"></span>
-            </div>
+                <span data-year="1980" data-info="flash memory"></span></div>
             <div class="input">
-                <span data-year="1990" data-info="World Wide Web"></span>
-            </div>
+                <span data-year="1990" data-info="World Wide Web"></span></div>
             <div class="input">
-                <span data-year="2000" data-info="Google AdWords"></span>
-            </div>
-        </div>
-    </div>
-    
-    
+                <span data-year="2000" data-info="Google AdWords"></span></div></div></div>    
     <div id="options-container">
         <div id="options">
             <div id="options-content">
@@ -330,6 +310,7 @@
             // $("#thumbprint").animate({left: 265}, 500);
             $("#thumbprint").animate({ left: "95%" }, 500);
             $("#options-content").delay(1500).animate({ opacity: 1 }, 500);
+            $("#options-content").css("visibility", "visible");
             $("#CSS").delay(1500).animate({ opacity: 1 }, 500);
             $("#CSS").css("visibility", "visible");
             $("#menu").delay(1500).animate({ opacity: 1 }, 500);
@@ -351,6 +332,7 @@
             $("#options").animate({ left: $("#options").data("left") }, 500);
             $("#thumbprint").animate({ left: $("#thumbprint").data("left") }, 500);
             $("#options-content").animate({ opacity: 0 }, 500);
+            $("#options-content").css("visibility", "hidden");
             $("#CSS").animate({ opacity: 0 }, 500);
             $("#CSS").css("visibility", "hidden");
             $("#menu").animate({ opacity: 0 }, 500);
