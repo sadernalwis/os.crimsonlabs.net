@@ -1,18 +1,25 @@
 {
-    "name": "socket-chat-example",
-    "version": "0.0.1",
-    "description": "my first socket.io app",
+    "name": "OS.CRIMSONLABS.NET",
+    "version": "0.14",
+    "description": "Corporate Cluster Network for the Industry 4.0",
     "dependencies": {
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "express-fileupload": "^1.2.1",
         "express-ip": "^1.0.4",
+        "hexasphere.js": "*",
+        "liftoff": "^3.1.0",
         "lodash": "^4.17.20",
         "morgan": "^1.10.0",
         "node-fetch": "^2.6.1",
         "npm-check-updates": "^11.1.1",
-        "socket.io": "^3.1.1"
+        "pusher.color": "~0.2.4",
+        "quadtree2": "~0.6.0",
+        "socket.io": "^3.1.1",
+        "three": "~0.125.2",
+        "tween.js": "~0.13.0",
+        "vec2": "~1.6.1"
     },
     "scripts": {
         "start": "node index.js",
