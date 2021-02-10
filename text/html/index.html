@@ -12,16 +12,9 @@
     <script>0</script>
     <div id="container"><div id="globe"></div></div>
     <div id="CSS" style="position: absolute;"></div>
-    <div id="menu" style="width: 100%;height: 5%; position:absolute;top: 10px;left: 0px;">
-        <button id="table">TABLE</button>
-        <button id="sphere">SPHERE</button>
-        <button id="helix">HELIX</button>
-        <button id="grid">GRID</button>
-        <button id="geo">GLOBE</button></div>
     <div class="timeline-container">
         <!-- <div class="flex-parent"> -->
-        <div >
-            <div id="flip" class="input-flex-container">
+            <div id="flip" class="input-flex-container just-center">
                 <div class="input"><span data-year="1910" data-info="headset"></span></div>
                 <div class="input"><span data-year="1920" data-info="jungle gym"></span></div>
                 <div class="input active"><span data-year="1930" data-info="chocolate chip cookie"></span></div>
@@ -31,8 +24,8 @@
                 <div class="input"><span data-year="1970" data-info="wireless LAN"></span></div>
                 <div class="input"><span data-year="1980" data-info="flash memory"></span></div>
                 <div class="input"><span data-year="1990" data-info="World Wide Web"></span></div>
-                <div class="input"><span data-year="2000" data-info="Google AdWords"></span></div></div></div>    
-        <div id="time-grid" class="timeline">
+                <div class="input"><span data-year="2000" data-info="Google AdWords"></span></div></div>
+        <div id="time-grid" class="timeline small-center">
             <div class="timeline-month">August, 2018<span>3 Entries</span></div>
             <div class="timeline-section"><div class="timeline-date">21, Tuesday</div>
             <div class="row">
@@ -262,6 +255,12 @@
         </div>
     </div>
 
+    <div id="menu" style="width: 100%;height: 5%; position:absolute;top: 10px;left: 0px;">
+        <button id="table">TABLE</button>
+        <button id="sphere">SPHERE</button>
+        <button id="helix">HELIX</button>
+        <button id="grid">GRID</button>
+        <button id="geo">GLOBE</button></div>
     <div class="header" id="header-bottom">
         <div class="header-left-section">TOUCHPOINT KEYBOARD ... <span class="alt-1">INTERACTION SEQUENCING</span></div>
         <div class="header-right-section">SYS | O12</div>
@@ -290,6 +289,8 @@
         import { TWEEN } from './text/javascript/threejs/examples/jsm/libs/tween.module.min.js';
         import { TrackballControls } from './text/javascript/threejs/examples/jsm/controls/TrackballControls.js';
         import { CSS3DRenderer, CSS3DObject } from './text/javascript/threejs/examples/jsm/renderers/CSS3DRenderer.js';
+        // import { Interaction } from './text/javascript/three.interaction.js/build/three.interaction.module.js';
+        // var interaction = new THREE.Interaction(renderer, scene, camera);
         let camera, scene, renderer;
         let controls;
         const objects = [];
@@ -301,26 +302,43 @@
             camera.position.z = 3000;
             scene = new THREE.Scene();
             for (let i = 0; i < table.length; i += 5) {// table
-                const element = document.createElement('div');
-                element.className = 'element';
-                element.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')';
-                const number = document.createElement('div');
-                number.className = 'number';
-                number.textContent = (i / 5) + 1; element.appendChild(number);
-                const symbol = document.createElement('div');
-                symbol.className = 'symbol'; symbol.textContent = table[i]; element.appendChild(symbol);
-                const details = document.createElement('div');
-                details.className = 'details';
-                details.innerHTML = table[i + 1] + '<br>' + table[i + 2]; element.appendChild(details);
+                const element = document.createElement('div'); element.className = 'element'; element.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')';
+                const number = document.createElement('div'); number.className = 'number'; number.textContent = (i / 5) + 1; element.appendChild(number);
+                const symbol = document.createElement('div'); symbol.className = 'symbol'; symbol.textContent = table[i]; element.appendChild(symbol);
+                const details = document.createElement('div'); details.className = 'details'; details.innerHTML = table[i + 1] + '<br>' + table[i + 2]; element.appendChild(details);
+                element.addEventListener('click', function (e) {
+                    window.console.log(e.target.objectCSS);
+                    camera.position.sub(objects[0].position).setLength(10).add(objects[0].position);
+                }, false);
+                // number.addEventListener('click', function () { 
+                // }, false);
+                // symbol.addEventListener('click', function () { 
+                // }, false);
+                // details.addEventListener('click', function () { 
+                // }, false);
+
                 const objectCSS = new CSS3DObject(element);
                 objectCSS.position.x = Math.random() * 4000 - 2000;
                 objectCSS.position.y = Math.random() * 4000 - 2000;
-                objectCSS.position.z = Math.random() * 4000 - 2000; scene.add(objectCSS); objects.push(objectCSS);
-                const object = new THREE.Object3D();
-                object.position.x = (table[i + 3] * 140) - 1330;
-                object.position.y = - (table[i + 4] * 180) + 990; targets.table.push(object);}
-            const vector = new THREE.Vector3();// sphere
-            for (let i = 0, l = objects.length; i < l; i++) {
+                objectCSS.position.z = Math.random() * 4000 - 2000; 
+                scene.add(objectCSS); objects.push(objectCSS);
+
+                // objectCSS.cursor = 'pointer';
+                // objectCSS.on('click', function(ev) {console.log("==");});
+                // element.objectCSS = objectCSS;
+
+                // objectCSS.on('pointerdown', function(e) {
+                //     // blink(document.querySelector('#pointerdown'));
+                //     window.console.log(e);
+                //     // e.data.originalEvent.preventDefault();
+
+                // });
+                // window.console.log(objectCSS);
+
+                const object = new THREE.Object3D(); object.position.x = (table[i + 3] * 140) - 1330; object.position.y = - (table[i + 4] * 180) + 990; 
+                targets.table.push(object);}
+            const vector = new THREE.Vector3();
+            for (let i = 0, l = objects.length; i < l; i++) {// sphere
                 const phi = Math.acos(- 1 + (2 * i) / l);
                 const theta = Math.sqrt(l * Math.PI) * phi;
                 const object = new THREE.Object3D();
@@ -360,7 +378,13 @@
             const buttonGrid = document.getElementById('grid');
             buttonGrid.addEventListener('click', function () { transform(targets.grid, 2000); }, false);
             const buttonGeo = document.getElementById('geo');
-            buttonGrid.addEventListener('click', function () { transform(targets.grid, 2000); }, false);
+            buttonGeo.addEventListener('click', function () { 
+                // transform(targets.grid, 2000); 
+                window.console.log("clicked");
+                camera.position.sub(objects[0].position).setLength(10).add(objects[0].position);
+                // camera.position.setLength(100);
+            
+            }, false);
             transform(targets.grid, 2000);
             window.addEventListener('resize', onWindowResize1, false);}
         function transform(targets, duration) {
@@ -474,6 +498,7 @@
             $("#CSS").css("visibility", "visible");
             $("#menu").delay(1500).animate({ opacity: 1 }, 500);
             $("#menu").css("visibility", "visible");
+            $("#flip").animate({ height: "20%" }, 500);
             $(".flex-parent").delay(1500).animate({ opacity: 1 }, 500);
             $(".flex-parent").css("visibility", "visible");
             setTimeout(function () {
@@ -496,6 +521,8 @@
             $("#CSS").css("visibility", "hidden");
             $("#menu").animate({ opacity: 0 }, 500);
             $("#menu").css("visibility", "hidden");
+            $("#flip").animate({ height: "100%" }, 500);
+            // $("#flip").css("visibility", "hidden");
             $(".flex-parent").animate({ opacity: 0 }, 500);
             $(".flex-parent").css("visibility", "hidden");
             $(".header").css("visibility", "hidden");}
@@ -585,6 +612,121 @@
             });
         });
     </script>
+    <script type="module">
+        // window.addEventListener('resize', onWindowResize, false);
+
+        // var WIDTH = window.innerWidth;
+        // var HEIGHT = window.innerHeight;
+        // var camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.01, 100);
+        // var renderer = new THREE.WebGLRenderer({
+        //   canvas: document.querySelector('#webgl'),
+        //   antialias: true,
+        // });
+        // renderer.setClearColor(0x41b882);
+        // renderer.setSize(WIDTH, HEIGHT);
+        // var scene = new THREE.Scene();
+
+
+        // import * as THREE from '../../text/javascript/threejs/build/three.module.js';
+        // import { TWEEN } from './text/javascript/threejs/examples/jsm/libs/tween.module.min.js';
+        // import { TrackballControls } from './text/javascript/threejs/examples/jsm/controls/TrackballControls.js';
+        // import { CSS3DRenderer, CSS3DObject } from './text/javascript/threejs/examples/jsm/renderers/CSS3DRenderer.js';
+        // import { Interaction } from './text/javascript/three.interaction.js/build/three.interaction.js';
+        // var interaction = new THREE.Interaction(renderer, scene, camera);
+
+        // var cube = new THREE.Mesh(
+        //   new THREE.BoxGeometry(3, 3, 3),
+        //   new THREE.MeshPhongMaterial({ color: 0xffffff })
+        // );
+        // cube.cursor = 'pointer';
+        // cube.position.y = -2;
+        // cube.position.z = -10;
+        // cube.name = 'cube';
+        // scene.add(cube);
+
+        // var ambient = new THREE.AmbientLight( 0x666666 );
+        // scene.add( ambient );
+        // var light = new THREE.PointLight(0xffffff);
+        // light.position.set(20, 50, 10);
+        // scene.add(light);
+
+        // var box = document.querySelector('#event-box');
+        // cube.on('pointerdown', function(ev) {
+        //   blink(document.querySelector('#pointerdown'));
+        //   console.log('%c' + cube.name + '%c => pointerdown', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('pointermove', function(ev) {
+        //   blink(document.querySelector('#pointermove'));
+        //   console.log('%c' + cube.name + '%c => pointermove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('pointerup', function(ev) {
+        //   blink(document.querySelector('#pointerup'));
+        //   console.log('%c' + cube.name + '%c => pointerup', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('pointerout', function(ev) {
+        //   blink(document.querySelector('#pointerout'));
+        //   console.log('%c' + cube.name + '%c => pointerout', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('click', function(ev) {
+        //   blink(document.querySelector('#click'));
+        //   console.log('%c' + cube.name + '%c => click', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('touchstart', function(ev) {
+        //   blink(document.querySelector('#touchstart'));
+        //   console.log('%c' + cube.name + '%c => touchstart', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('touchmove', function(ev) {
+        //   blink(document.querySelector('#touchmove'));
+        //   ev.data.originalEvent.preventDefault();
+        //   console.log('%c' + cube.name + '%c => touchmove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('touchend', function(ev) {
+        //   blink(document.querySelector('#touchend'));
+        //   console.log('%c' + cube.name + '%c => touchend', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('mousemove', function(ev) {
+        //   blink(document.querySelector('#mousemove'));
+        //   console.log('%c' + cube.name + '%c => mousemove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('mousedown', function(ev) {
+        //   blink(document.querySelector('#mousedown'));
+        //   console.log('%c' + cube.name + '%c => mousedown', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('mouseout', function(ev) {
+        //   blink(document.querySelector('#mouseout'));
+        //   console.log('%c' + cube.name + '%c => mouseout', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('mouseover', function(ev) {
+        //   blink(document.querySelector('#mouseover'));
+        //   console.log('%c' + cube.name + '%c => mouseover', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+        // cube.on('mouseup', function(ev) {
+        //   blink(document.querySelector('#mouseup'));
+        //   console.log('%c' + cube.name + '%c => mouseup', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
+        // });
+
+
+        function render() {
+          cube.rotation.y += 0.01;
+          renderer.render(scene, camera);
+          requestAnimationFrame(render);
+        }
+        // render();
+
+        // function onWindowResize() {
+        //   camera.aspect = window.innerWidth / window.innerHeight;
+        //   camera.updateProjectionMatrix();
+        //   renderer.setSize(window.innerWidth, window.innerHeight);
+        // }
+
+        function blink(dom) {
+          clearTimeout(dom.timer);
+          dom.className = 'marker active';
+          dom.timer = setTimeout(function(){
+            dom.className = 'marker';
+          }, 300);
+        }
+      </script>
 </body>
 
 </html>

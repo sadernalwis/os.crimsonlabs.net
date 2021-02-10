@@ -145,6 +145,7 @@ app.use((req, res) => {
                         if (node.endsWith(".svg")) {return `https://${hostname}:${port}${directory}/${node}`;}})));
             res.end();} 
         else if (url[1] !== "socket.io") {
+            console.log(`fetching ${path} = ${url.length}`);
             fs.readFile(path, function(err, data) {
                 if (err) {console.error(`error on ${path} + ${err} ${url.length}`);} 
                 else {res.writeHead(200, { 'Content-Type': `${url[1]}/${url[2]}` });
