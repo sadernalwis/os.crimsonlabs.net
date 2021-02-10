@@ -30,10 +30,9 @@
             <div class="timeline-section"><div class="timeline-date">21, Tuesday</div>
             <div class="row">
                 <div class="col-sm-4">
+                    <div id="stack" class="stack"></div>
                     <div class="feature timeline-box" style="background-color: #000 ;">
-                        <div class="box-title">
-                        <i class="fa fa-asterisk text-success" aria-hidden="true"></i> Job Created
-                        </div>
+                        <div class="box-title"><i class="fa fa-asterisk text-success" aria-hidden="true"></i> Job Created</div>
                         <div class="box-content">
                         <a class="btn btn-xs btn-default pull-right">Details</a>
                         <div class="box-item"><strong>Loss Type</strong>: A/C Leak</div>
@@ -383,7 +382,6 @@
                 window.console.log("clicked");
                 camera.position.sub(objects[0].position).setLength(10).add(objects[0].position);
                 // camera.position.setLength(100);
-            
             }, false);
             transform(targets.grid, 2000);
             window.addEventListener('resize', onWindowResize1, false);}
@@ -611,114 +609,33 @@
                 $("#time-grid").slideToggle("fast");
             });
         });
+        let stack = document.querySelector(".stack");
+        [...stack.children].reverse().forEach(i => stack.append(i));
+        stack.addEventListener("click", swap);
+        function swap(e) {
+            let card = document.querySelector(".card:last-child");
+            if (e.target !== card) return;
+            card.style.animation = "swap 700ms forwards";
+            setTimeout(() => { card.style.animation = ""; stack.prepend(card);}, 700);}
+        function addChild(count)  {
+            let stack = document.getElementById("stack");
+            let child = document.createElement("div");
+            child.setAttribute("class","timeline-box card");
+            child.innerHTML = "text" + count;
+            stack.prepend(child);
+            count--;
+            console.log("count is " + count); 
+            if (count>0) {setTimeout(addChild.bind(null,count--), 700);}}
+        function addChildren(count) { setTimeout(addChild.bind(null,count), 700);}
+        addChildren(1);
     </script>
     <script type="module">
-        // window.addEventListener('resize', onWindowResize, false);
-
-        // var WIDTH = window.innerWidth;
-        // var HEIGHT = window.innerHeight;
-        // var camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.01, 100);
-        // var renderer = new THREE.WebGLRenderer({
-        //   canvas: document.querySelector('#webgl'),
-        //   antialias: true,
-        // });
-        // renderer.setClearColor(0x41b882);
-        // renderer.setSize(WIDTH, HEIGHT);
-        // var scene = new THREE.Scene();
-
-
-        // import * as THREE from '../../text/javascript/threejs/build/three.module.js';
-        // import { TWEEN } from './text/javascript/threejs/examples/jsm/libs/tween.module.min.js';
-        // import { TrackballControls } from './text/javascript/threejs/examples/jsm/controls/TrackballControls.js';
-        // import { CSS3DRenderer, CSS3DObject } from './text/javascript/threejs/examples/jsm/renderers/CSS3DRenderer.js';
-        // import { Interaction } from './text/javascript/three.interaction.js/build/three.interaction.js';
-        // var interaction = new THREE.Interaction(renderer, scene, camera);
-
-        // var cube = new THREE.Mesh(
-        //   new THREE.BoxGeometry(3, 3, 3),
-        //   new THREE.MeshPhongMaterial({ color: 0xffffff })
-        // );
-        // cube.cursor = 'pointer';
-        // cube.position.y = -2;
-        // cube.position.z = -10;
-        // cube.name = 'cube';
-        // scene.add(cube);
-
-        // var ambient = new THREE.AmbientLight( 0x666666 );
-        // scene.add( ambient );
-        // var light = new THREE.PointLight(0xffffff);
-        // light.position.set(20, 50, 10);
-        // scene.add(light);
-
-        // var box = document.querySelector('#event-box');
-        // cube.on('pointerdown', function(ev) {
-        //   blink(document.querySelector('#pointerdown'));
-        //   console.log('%c' + cube.name + '%c => pointerdown', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('pointermove', function(ev) {
-        //   blink(document.querySelector('#pointermove'));
-        //   console.log('%c' + cube.name + '%c => pointermove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('pointerup', function(ev) {
-        //   blink(document.querySelector('#pointerup'));
-        //   console.log('%c' + cube.name + '%c => pointerup', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('pointerout', function(ev) {
-        //   blink(document.querySelector('#pointerout'));
-        //   console.log('%c' + cube.name + '%c => pointerout', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('click', function(ev) {
-        //   blink(document.querySelector('#click'));
-        //   console.log('%c' + cube.name + '%c => click', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('touchstart', function(ev) {
-        //   blink(document.querySelector('#touchstart'));
-        //   console.log('%c' + cube.name + '%c => touchstart', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('touchmove', function(ev) {
-        //   blink(document.querySelector('#touchmove'));
-        //   ev.data.originalEvent.preventDefault();
-        //   console.log('%c' + cube.name + '%c => touchmove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('touchend', function(ev) {
-        //   blink(document.querySelector('#touchend'));
-        //   console.log('%c' + cube.name + '%c => touchend', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('mousemove', function(ev) {
-        //   blink(document.querySelector('#mousemove'));
-        //   console.log('%c' + cube.name + '%c => mousemove', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('mousedown', function(ev) {
-        //   blink(document.querySelector('#mousedown'));
-        //   console.log('%c' + cube.name + '%c => mousedown', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('mouseout', function(ev) {
-        //   blink(document.querySelector('#mouseout'));
-        //   console.log('%c' + cube.name + '%c => mouseout', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('mouseover', function(ev) {
-        //   blink(document.querySelector('#mouseover'));
-        //   console.log('%c' + cube.name + '%c => mouseover', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-        // cube.on('mouseup', function(ev) {
-        //   blink(document.querySelector('#mouseup'));
-        //   console.log('%c' + cube.name + '%c => mouseup', 'color: #fff; background: #41b882; padding: 3px 4px;', 'color: #41b882; background: #fff;');
-        // });
-
 
         function render() {
           cube.rotation.y += 0.01;
           renderer.render(scene, camera);
           requestAnimationFrame(render);
         }
-        // render();
-
-        // function onWindowResize() {
-        //   camera.aspect = window.innerWidth / window.innerHeight;
-        //   camera.updateProjectionMatrix();
-        //   renderer.setSize(window.innerWidth, window.innerHeight);
-        // }
-
         function blink(dom) {
           clearTimeout(dom.timer);
           dom.className = 'marker active';

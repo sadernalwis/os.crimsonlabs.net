@@ -6,15 +6,6 @@
     }
 }
 
-body {
-    background-color: #000000;
-    font-family: 'Inconsolata', sans-serif;
-    color: #fff;
-    font-size: 8pt;
-    margin: 0;
-    overflow: hidden;
-}
-
 a {
     color: #00eeee;
 }
